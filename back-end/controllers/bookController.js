@@ -1,4 +1,4 @@
-import Book from '../models/bookModel.js';
+import Book from "../models/bookModel.js";
 
 const createNewBook = async (req, res) => {
   try {
@@ -28,7 +28,7 @@ const createNewBook = async (req, res) => {
 const getAllBooks = async (_req, res) => {
   try {
     const books = await Book.find();
-    res.status(200).json({ count: books.length, data: books });
+    res.status(200).json({ count: books.length, books });
   } catch (error) {
     console.log(error);
     res.status(500).json({ Error: error.Message });
@@ -40,7 +40,7 @@ const getOneBook = async (req, res) => {
   try {
     const book = await Book.findById({ _id: id });
     if (!book) {
-      res.status(404).send('Book not found!');
+      res.status(404).send("Book not found!");
     }
     res.status(200).json({ Count: book.length, Data: book });
   } catch (error) {
@@ -60,7 +60,7 @@ const updateBook = async (req, res) => {
     } else {
       const book = await Book.findByIdAndUpdate({ _id: id }, req.body);
       if (!book) {
-        res.status(404).send('Book not found!');
+        res.status(404).send("Book not found!");
       }
       res.status(201).json({ Data: book });
     }
