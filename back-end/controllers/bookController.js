@@ -42,7 +42,7 @@ const getOneBook = async (req, res) => {
     if (!book) {
       res.status(404).send("Book not found!");
     }
-    res.status(200).json({ Count: book.length, Data: book });
+    res.status(200).json({ Count: book.length, book });
   } catch (error) {
     console.log(error.Message);
     res.status(500).json({ Error: error.Message });
